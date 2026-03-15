@@ -11,15 +11,20 @@ public class EquipmentReader {
         File file = new File("src/equipment.txt");
         Scanner input;
 
+        //Åpne filem
         try {
             input = new Scanner(file);
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
-
+        // liste over utsyr-objektene
         ArrayList<Equipment> EquipmentArrayList = new ArrayList<>();
+
+        //lese linjen linje for linje
         while (input.hasNextLine()){
             String s = input.nextLine();
+
+            // ball-objekt
             if (s.equals("Ball")) {
                 String idlLine = input.nextLine();
                 int id = Integer.parseInt(idlLine);
@@ -30,7 +35,7 @@ public class EquipmentReader {
 
                 Ball ball =  new Ball(id,location,needsReplacement,type,needsAir);
                 EquipmentArrayList.add(ball);
-
+            // nordtenisracket - object
             } else  if (s.equals("TableTennisRacket")){
                 String idlLine = input.nextLine();
                 int id = Integer.parseInt(idlLine);
@@ -42,6 +47,7 @@ public class EquipmentReader {
                 EquipmentArrayList.add(racket);
                 }
             }
+        // Returner listen med alle objektene
         return EquipmentArrayList;
 
     }
